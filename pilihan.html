@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pilih Game</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #282c34;
+            color: white;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            text-align: center;
+        }
+
+        .container {
+            background-color: #3b3f45;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            width: 80vh;
+            max-width: 90%;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 10px;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #4caf50;
+            color: white;
+        }
+
+        a {
+            color: #61dafb;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Pilih Game</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>No.</th>
+                    <th>Nama Game</th>
+                    <th>Aksi</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Game Tebak Tebakan Absurd</td>
+                    <td><a href="game.html">Mainkan</a></td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Game Tebak Tebakan Angka</td>
+                    <td><a href="angka.html">Mainkan</a></td>
+                </tr>
+
+                <tr>
+                    <td>3</td>
+                    <td>Game kecepatan</td>
+                    <td><a href="mole.html">Mainkan</a></td>
+                </tr>
+
+
+                <!-- Tambahkan opsi game lainnya di sini -->
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

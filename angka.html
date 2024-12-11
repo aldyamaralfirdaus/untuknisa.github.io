@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pilih Tingkat Kesulitan</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #282c34;
+            color: white;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            text-align: center;
+        }
+
+        .container {
+            background-color: #3b3f45;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            width: 80vh;
+            max-width: 90%;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        .difficulty-button {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #61dafb;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        .difficulty-button:hover {
+            background-color: #21a1f1;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Pilih Tingkat Kesulitan</h1>
+        <a href="mudah.html" class="difficulty-button">Poke</a>
+        <a href="lumayan.html" class="difficulty-button">Lumayan</a>
+        <a href="susah.html" class="difficulty-button">Pro Player</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Whack-a-Mole</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #282c34;
+            color: white;
+            font-family: Arial, sans-serif;
+            margin: 0;
+        }
+
+        .game-container {
+            display: grid;
+            grid-template-columns: repeat(3, 100px);
+            gap: 20px;
+        }
+
+        .mole {
+            width: 100px;
+            height: 100px;
+            background-color: brown;
+            border-radius: 50%;
+            cursor: pointer;
+            display: none;
+        }
+
+        .hole {
+            width: 100px;
+            height: 100px;
+            background-color: green;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .message {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 1.2em;
+        }
+
+        #timer {
+            text-align: center;
+            font-size: 1.5em;
+            margin: 10px 0;
+        }
+
+        .score-card {
+            display: none;
+            background-color: #3b3f45;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            margin-top: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+        }
+
+        .score-card h2 {
+            margin: 0;
+            margin-bottom: 10px;
+        }
+
+        .score-card p {
+            margin: 0;
+            font-size: 1.5em;
+        }
+
+        .buttons {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .buttons button {
+            padding: 10px 20px;
+            margin: 0 10px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #61dafb;
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .buttons button:hover {
+            background-color: #21a1f1;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h1>Whack-a-Mole</h1>
+        <div class="game-container">
+            <div class="hole" id="hole1"><div class="mole" id="mole1"></div></div>
+            <div class="hole" id="hole2"><div class="mole" id="mole2"></div></div>
+            <div class="hole" id="hole3"><div class="mole" id="mole3"></div></div>
+            <div class="hole" id="hole4"><div class="mole" id="mole4"></div></div>
+            <div class="hole" id="hole5"><div class="mole" id="mole5"></div></div>
+            <div class="hole" id="hole6"><div class="mole" id="mole6"></div></div>
+            <div class="hole" id="hole7"><div class="mole" id="mole7"></div></div>
+            <div class="hole" id="hole8"><div class="mole" id="mole8"></div></div>
+            <div class="hole" id="hole9"><div class="mole" id="mole9"></div></div>
+        </div>
+        <div class="message" id="message">Tekan "Start" untuk memulai!</div>
+        <button onclick="startGame()" style="display:block; margin: 20px auto;">Start</button>
+        <p id="score" style="text-align: center;">Skor: 0</p>
+        <p id="timer">Waktu: 30 detik</p>
+        <div class="score-card" id="scoreCard">
+            <h2>Skor Akhir</h2>
+            <p id="finalScore">0</p>
+            <div class="buttons">
+                <button onclick="startGame()">Ulangi</button>
+                <button onclick="window.location.href='index.html'">Keluar</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        let score = 0;
+        let activeMole;
+        let gameTimer;
+        let countdown;
+
+        function startGame() {
+            score = 0;
+            document.getElementById('score').textContent = "Skor: " + score;
+            document.getElementById('message').textContent = "Permainan dimulai! Klik mol secepatnya!";
+            document.getElementById('timer').textContent = "Waktu: 30 detik";
+            document.getElementById('scoreCard').style.display = 'none';
+            if (gameTimer) clearInterval(gameTimer);
+            if (countdown) clearInterval(countdown);
+            gameTimer = setInterval(showMole, 500);
+            startTimer(30); // Waktu permainan 30 detik
+        }
+
+        function showMole() {
+            if (activeMole) activeMole.style.display = 'none';
+            let newMole;
+            do {
+                const moleId = "mole" + Math.floor(Math.random() * 9 + 1);
+                newMole = document.getElementById(moleId);
+            } while (newMole === activeMole);
+            activeMole = newMole;
+            activeMole.style.display = 'block';
+        }
+
+        document.querySelectorAll('.mole').forEach(mole => {
+            mole.addEventListener('click', () => {
+                score++;
+                document.getElementById('score').textContent = "Skor: " + score;
+                mole.style.display = 'none';
+            });
+        });
+
+        function startTimer(seconds) {
+            let timeLeft = seconds;
+            countdown = setInterval(() => {
+                timeLeft--;
+                document.getElementById('timer').textContent = "Waktu: " + timeLeft + " detik";
+                if (timeLeft <= 0) {
+                    clearInterval(countdown);
+                    endGame();
+                }
+            }, 1000);
+        }
+
+        function endGame() {
+            clearInterval(gameTimer);
+            document.getElementById('message').textContent = "Waktu habis!";
+            if (activeMole) activeMole.style.display = 'none';
+            document.getElementById('finalScore').textContent = score;
+            document.getElementById('scoreCard').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
